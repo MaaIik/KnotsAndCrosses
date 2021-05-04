@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="player_one_score" type="id" />
+    <item name="player_two_score" type="id" />
+    <item name="view4" type="id" />
+    <item name="nine" type="id" />
+    <item name="eight" type="id" />
+    <item name="six" type="id" />
+    <item name="four" type="id" />
+    <item name="seven" type="id" />
+    <item name="one" type="id" />
+    <item name="two" type="id" />
+    <item name="three" type="id" />
+    <item name="five" type="id" />
+    <item name="view" type="id" />
+    <item name="view2" type="id" />
+    <item name="view3" type="id" />
+    <item name="start_new_game_button" type="id" />
+</resources>
