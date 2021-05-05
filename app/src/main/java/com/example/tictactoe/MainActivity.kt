@@ -1,23 +1,25 @@
 package com.example.tictactoe
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import com.example.tictactoe.databinding.ActivityMainBinding
 import com.example.tictactoe.dialogs.CreateGameDialog
 import com.example.tictactoe.dialogs.GameDialogListener
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() , GameDialogListener {
+
 
     val TAG:String = "MainActivity"
 
     lateinit var binding:ActivityMainBinding
     //lateinit var startNewGameButton: Button
 
+    companion object {
+        lateinit var mainContext : MainActivity
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,10 @@ class MainActivity : AppCompatActivity() , GameDialogListener {
         binding.joinGameButton.setOnClickListener {
             joinGame()
         }
+
+        mainContext = this
+
+        //GameManager.createGame("Testing createGame")
 
         //Uth
         /*startNewGameButton = findViewById(R.id.startNewGameButton)

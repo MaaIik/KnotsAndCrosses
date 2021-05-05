@@ -6,12 +6,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.tictactoe.api.data.Game
 import com.example.tictactoe.databinding.ActivityGameBinding
+
+class GamePlayHolder {
+
+    companion object {
+        var GamePlay: Game? = null
+    }
+}
 
 class GameActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGameBinding
-    private lateinit var gameManager: GameManager
     private lateinit var one: TextView
     private lateinit var two: TextView
     private lateinit var three: TextView
@@ -27,10 +34,19 @@ class GameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
-        //binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityGameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        gameManager = GameManager()
+        binding.GameIdText.text = GamePlayHolder.GamePlay?.gameId
+
+        if (GamePlayHolder.GamePlay?.players?.size == 1){
+            CurrentPlayerHolder.currentPlayer = 1
+        }
+
+        if (GamePlayHolder.GamePlay?.players?.size == 2){
+            CurrentPlayerHolder.currentPlayer = 2
+        }
+
 
         one = findViewById(R.id.one)
         two = findViewById(R.id.two)
@@ -57,17 +73,17 @@ class GameActivity : AppCompatActivity() {
 
         startNewGameButton.setOnClickListener {
             startNewGameButton.visibility = View.GONE
-            gameManager.reset()
+            GameManager.reset()
             resetboxes()
         }
 
-        updatePoints()
+        //updatePoints()
     }
 
-    private fun updatePoints() {
-        player1Points.text = "Player X Points: ${gameManager.player1Points}"
-        player2Points.text = "Player O Points: ${gameManager.player2Points}"
-    }
+    /*private fun updatePoints() {
+        player1Points.text = "Player X Points: ${GameManager.player1Points}"
+        player2Points.text = "Player O Points: ${GameManager.player2Points}"
+    }*/
 
 
     private fun resetboxes() {
@@ -102,10 +118,10 @@ class GameActivity : AppCompatActivity() {
 
     private fun onBoxClicked(box: TextView, position: Position) {
         if (box.text.isEmpty()) {
-            box.text = gameManager.currentPlayerMark
-            val winningLine = gameManager.makeMove(position)
+            box.text = GameManager.currentPlayerSign
+            val winningLine = GameManager.makeMove(position)
             if (winningLine != null) {
-                updatePoints()
+                //updatePoints()
                 disableBoxes()
                 startNewGameButton.visibility = View.VISIBLE
                 showWinner(winningLine)
