@@ -6,26 +6,32 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.tictactoe.GameManager
-import com.example.tictactoe.databinding.DialogCreateGameBinding
+import com.example.tictactoe.databinding.DialogJoinGameBinding
 import java.lang.ClassCastException
 
 
 class JoinGameDialog() : DialogFragment() {
 
+    // Trenger ikke denne fordi vi har allerede laget den i CreateGameDialog
+    //internal lateinit var listener:GameDialogListener
 
-    /*override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
 
             val builder: AlertDialog.Builder = AlertDialog.Builder(it)
             val inflater = requireActivity().layoutInflater
-            val binding = DialogCreateGameBinding.inflate(inflater)
+            val binding = DialogJoinGameBinding.inflate(inflater)
 
             builder.apply {
                 setTitle("Join game")
                 setPositiveButton("Join") { dialog, which ->
                     if(binding.username.text.toString() != ""){
                         //listener.onDialogCreateGame(binding.username.text.toString())
-                        GameManager.joinGame(binding.username.text.toString()) //, binding.gameId.text.toString())
+
+                        // Legger til felt for username og Game ID
+                        GameManager.joinGame(binding.username.text.toString(), binding.gameId.text.toString())
+                        println("111111111JoinDialog${binding.username.text} ${binding.gameId.text}")
                     }
                 }
                 setNegativeButton("Cancel") { dialog, which ->
@@ -49,5 +55,5 @@ class JoinGameDialog() : DialogFragment() {
 
         }
     }
-*/
+
 }

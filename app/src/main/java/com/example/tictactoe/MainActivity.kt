@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.tictactoe.databinding.ActivityMainBinding
 import com.example.tictactoe.dialogs.CreateGameDialog
 import com.example.tictactoe.dialogs.GameDialogListener
+import com.example.tictactoe.dialogs.JoinGameDialog
 
 
 class MainActivity : AppCompatActivity() , GameDialogListener {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() , GameDialogListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         binding.startGameButton.setOnClickListener {
             createNewGame()
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity() , GameDialogListener {
     }
 
     private fun joinGame(){
-        val dlg = CreateGameDialog()
+        val dlg = JoinGameDialog()
         dlg.show(supportFragmentManager, "JoinGameDialogFragment")
 
     }

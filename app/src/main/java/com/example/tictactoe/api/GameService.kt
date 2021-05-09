@@ -49,7 +49,7 @@ object GameService {
             {
                 // Success game created.
                 val game = Gson().fromJson(it.toString(0), Game::class.java)
-                println("1111111111111111 ${game}")
+                println("1111111111111111createGame ${game}")
                 callback(game,null)
             }, {
                 // Error creating new game.
@@ -79,9 +79,10 @@ object GameService {
                 Response.Listener{
                     val game = Gson().fromJson(it.toString(0), Game::class.java)
                     callback(game, null)
-                    println("$game")
+                    println("1111111111111111join $game")
                 },
                 Response.ErrorListener{
+                    println("111111111111Errorjoin")
             callback(null, it.networkResponse.statusCode)
         }) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -91,6 +92,8 @@ object GameService {
                 return headers
             }
         }
+        requestQue.add(request)
+
     }
 
     fun updateGame(gameId: String, gameState:GameState, callback: GameServiceCallback){
@@ -117,6 +120,7 @@ object GameService {
                 return headers
             }
         }
+        requestQue.add(request)
 
     }
 
@@ -141,6 +145,8 @@ object GameService {
                 return headers
             }
         }
+        requestQue.add(request)
+
     }
 
 }

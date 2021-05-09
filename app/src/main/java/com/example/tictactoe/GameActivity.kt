@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.tictactoe.api.data.Game
 import com.example.tictactoe.databinding.ActivityGameBinding
+import kotlinx.android.synthetic.main.activity_game.*
 
 class GamePlayHolder {
 
@@ -18,7 +19,15 @@ class GamePlayHolder {
 
 class GameActivity : AppCompatActivity() {
 
+    // Setup
     private lateinit var binding: ActivityGameBinding
+    private lateinit var startNewGameButton: Button
+    private lateinit var player1Points: TextView
+    private lateinit var player2Points: TextView
+    private lateinit var gameID: TextView
+
+
+    // Buttons
     private lateinit var one: TextView
     private lateinit var two: TextView
     private lateinit var three: TextView
@@ -28,16 +37,14 @@ class GameActivity : AppCompatActivity() {
     private lateinit var seven: TextView
     private lateinit var eight: TextView
     private lateinit var nine: TextView
-    private lateinit var startNewGameButton: Button
-    private lateinit var player1Points: TextView
-    private lateinit var player2Points: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.GameIdText.text = GamePlayHolder.GamePlay?.gameId
+
+        //binding.GameIdText.text = GamePlayHolder.GamePlay?.gameId
 
         if (GamePlayHolder.GamePlay?.players?.size == 1){
             CurrentPlayerHolder.currentPlayer = 1
@@ -47,7 +54,25 @@ class GameActivity : AppCompatActivity() {
             CurrentPlayerHolder.currentPlayer = 2
         }
 
+        // New Game Functionality
+        startNewGameButton = findViewById(R.id.start_new_game_button)
 
+        startNewGameButton.setOnClickListener {
+            GameManager.reset()
+            resetboxes()
+        }
+
+        // Display Game ID
+        gameID = findViewById(R.id.displayGameId)
+        gameID.text = "GameID: ${GamePlayHolder.GamePlay?.gameId.toString()}"
+        println("GameID ${GamePlayHolder.GamePlay?.gameId.toString()}")
+
+
+        player1Points = findViewById(R.id.player_one_score)
+        player2Points = findViewById(R.id.player_two_score)
+
+
+        // Buttons
         one = findViewById(R.id.one)
         two = findViewById(R.id.two)
         three = findViewById(R.id.three)
@@ -57,10 +82,8 @@ class GameActivity : AppCompatActivity() {
         seven = findViewById(R.id.seven)
         eight = findViewById(R.id.eight)
         nine = findViewById(R.id.nine)
-        startNewGameButton = findViewById(R.id.start_new_game_button)
-        player1Points = findViewById(R.id.player_one_score)
-        player2Points = findViewById(R.id.player_two_score)
 
+        // Button Functionality
         one.setOnClickListener { onBoxClicked(one, Position(0, 0)) }
         two.setOnClickListener { onBoxClicked(two, Position(0, 1)) }
         three.setOnClickListener { onBoxClicked(three, Position(0, 2)) }
@@ -71,19 +94,16 @@ class GameActivity : AppCompatActivity() {
         eight.setOnClickListener { onBoxClicked(eight, Position(2, 1)) }
         nine.setOnClickListener { onBoxClicked(nine, Position(2, 2)) }
 
-        startNewGameButton.setOnClickListener {
-            startNewGameButton.visibility = View.GONE
-            GameManager.reset()
-            resetboxes()
-        }
 
-        //updatePoints()
+        updatePoints()
+    //GameManager.updateGame(GamePlayHolder.GamePlay!!.gameId, GamePlayHolder.GamePlay!!.state)
     }
 
-    /*private fun updatePoints() {
+    // Displaying the Score
+    private fun updatePoints() {
         player1Points.text = "Player X Points: ${GameManager.player1Points}"
         player2Points.text = "Player O Points: ${GameManager.player2Points}"
-    }*/
+    }
 
 
     private fun resetboxes() {
@@ -96,6 +116,7 @@ class GameActivity : AppCompatActivity() {
         seven.text = ""
         eight.text = ""
         nine.text = ""
+
         one.background = null
         two.background = null
         three.background = null
@@ -105,6 +126,7 @@ class GameActivity : AppCompatActivity() {
         seven.background = null
         eight.background = null
         nine.background = null
+
         one.isEnabled = true
         two.isEnabled = true
         three.isEnabled = true
@@ -121,9 +143,8 @@ class GameActivity : AppCompatActivity() {
             box.text = GameManager.currentPlayerSign
             val winningLine = GameManager.makeMove(position)
             if (winningLine != null) {
-                //updatePoints()
+                updatePoints()
                 disableBoxes()
-                startNewGameButton.visibility = View.VISIBLE
                 showWinner(winningLine)
             }
         }

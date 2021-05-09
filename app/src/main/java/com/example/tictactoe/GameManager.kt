@@ -15,7 +15,8 @@ class CurrentPlayerHolder{
 
 object GameManager {
 
-    var player: String? = null
+    // Ikke i bruk
+    //var player: String? = null
     var state: GameState? = null
 
 
@@ -97,6 +98,7 @@ object GameManager {
             } else {
                 /// TODO("We have a game. What to do?)
                 GamePlayHolder.GamePlay = game
+                //joinGame("Player 2", game!!.gameId)
 
                 val intent = Intent(MainActivity.mainContext, GameActivity::class.java)
                 MainActivity.mainContext.startActivity(intent)
@@ -114,6 +116,7 @@ object GameManager {
             } else {
                 /// TODO("We have a game. What to do?)
                 GamePlayHolder.GamePlay = game
+                println(game)
 
                 val intent = Intent(MainActivity.mainContext, GameActivity::class.java)
                 MainActivity.mainContext.startActivity(intent)
@@ -154,27 +157,27 @@ object GameManager {
     }
 
 // Method 2
+/*
+    class GameManager {
 
-    //class GameManager {
-
-       /* private var currentPlayer = 1
+        private var currentPlayer = 1
         var player1Points = 0
-        var player2Points = 0*/
+        var player2Points = 0
 
-        /*val currentPlayerMark: String
+        val currentPlayerMark: String
             get() {
                 return if (currentPlayer == 1) "X" else "O"
-            }*/
+            }
 
-        /*private var state = arrayOf( // 2D Array
+        private var state = arrayOf( // 2D Array
                 intArrayOf(0, 0, 0),
                 intArrayOf(0, 0, 0),
                 intArrayOf(0, 0, 0)
-        )*/
+        )
 
 
 
-        /*fun makeMove(position: Position): WinningLine? {
+        fun makeMove(position: Position): WinningLine? {
             stateY[position.row][position.column] = currentPlayer
 
             val winningLine = hasGameEnded()
@@ -189,9 +192,9 @@ object GameManager {
             }
 
             return winningLine
-        }*/
+        }
 
-        /*fun reset() {
+        fun reset() {
             stateY = arrayOf(
                     intArrayOf(0, 0, 0),
                     intArrayOf(0, 0, 0),
@@ -219,10 +222,10 @@ object GameManager {
                 return WinningLine.DIAGONAL_RIGHT
             }
             return null
-        }*/
+        }
 
         //Yversion 2
-        /*private fun hasGameEndedV2(): Boolean {
+        private fun hasGameEndedV2(): Boolean {
             stateY.forEach { row ->
                 val hasWon = row.all { player -> player == currentPlayer }
                 if (hasWon) return true
