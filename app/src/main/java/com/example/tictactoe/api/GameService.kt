@@ -52,8 +52,6 @@ object GameService {
                 println("1111111111111111createGame ${game}")
                 callback(game,null)
             }, {
-                // Error creating new game.
-                //println("1111111111111111 ${it.networkResponse.statusCode}")
                 callback(null, it.networkResponse.statusCode)
             } ) {
             override fun getHeaders(): MutableMap<String, String> {

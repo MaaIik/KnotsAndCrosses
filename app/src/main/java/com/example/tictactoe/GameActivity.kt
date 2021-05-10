@@ -9,6 +9,10 @@ import androidx.core.content.ContextCompat
 import com.example.tictactoe.api.data.Game
 import com.example.tictactoe.databinding.ActivityGameBinding
 import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class GamePlayHolder {
 
@@ -54,7 +58,7 @@ class GameActivity : AppCompatActivity() {
             CurrentPlayerHolder.currentPlayer = 2
         }
 
-        // New Game Functionality
+        // Start New Game Functionality
         startNewGameButton = findViewById(R.id.start_new_game_button)
 
         startNewGameButton.setOnClickListener {
@@ -65,9 +69,8 @@ class GameActivity : AppCompatActivity() {
         // Display Game ID
         gameID = findViewById(R.id.displayGameId)
         gameID.text = "GameID: ${GamePlayHolder.GamePlay?.gameId.toString()}"
-        println("GameID ${GamePlayHolder.GamePlay?.gameId.toString()}")
 
-
+        // Player score
         player1Points = findViewById(R.id.player_one_score)
         player2Points = findViewById(R.id.player_two_score)
 
@@ -105,6 +108,33 @@ class GameActivity : AppCompatActivity() {
         player2Points.text = "Player O Points: ${GameManager.player2Points}"
     }
 
+    /*private fun update_screen() {
+        CoroutineScope(Dispatchers.IO).launch {
+            while (!GamestatusHolder.status) {
+                GameManager.PollGame(GameHolder.MainGame!!.gameId)
+                delay(500)
+                this@GameActivity.runOnUiThread {
+                    val game = GameHolder.MainGame!!
+                    binding.player1.text = game.players[0]
+                    binding.wonLose.text = game.gameId
+                    if (GameHolder.MainGame!!.players.size == 2) {
+                        binding.player2.text = game.players[1]
+                        binding.wonLose.text = null
+                    }
+                    binding.one.text = game.state[0][0].takeUnless { it == "0" }
+                    binding.two.text = game.state[0][1].takeUnless { it == "0" }
+                    binding.three.text = game.state[0][2].takeUnless { it == "0" }
+                    binding.four.text = game.state[1][0].takeUnless { it == "0" }
+                    binding.five.text = game.state[1][1].takeUnless { it == "0" }
+                    binding.six.text = game.state[1][2].takeUnless { it == "0" }
+                    binding.seven.text = game.state[2][0].takeUnless { it == "0" }
+                    binding.eight.text = game.state[2][1].takeUnless { it == "0" }
+                    binding.nine.text = game.state[2][2].takeUnless { it == "0" }
+                    test_wining()
+                }
+            }
+        }
+    }*/
 
     private fun resetboxes() {
         one.text = ""

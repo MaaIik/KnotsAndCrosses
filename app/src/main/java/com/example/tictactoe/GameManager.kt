@@ -6,6 +6,7 @@ import com.example.tictactoe.api.GameService
 import com.example.tictactoe.api.GameServiceCallback
 import com.example.tictactoe.api.data.Game
 import com.example.tictactoe.api.data.GameState
+import com.example.tictactoe.databinding.ActivityGameBinding
 
 class CurrentPlayerHolder{
     companion object {
@@ -15,6 +16,7 @@ class CurrentPlayerHolder{
 
 object GameManager {
 
+    private lateinit var binding: ActivityGameBinding
     // Ikke i bruk
     //var player: String? = null
     var state: GameState? = null
@@ -33,18 +35,19 @@ object GameManager {
             listOf(0, 0, 0),
             listOf(0, 0, 0))
 
-    private var stateY = arrayOf( // 2D Array
+    private var stateGame = arrayOf( // 2D Array
             intArrayOf(0, 0, 0),
             intArrayOf(0, 0, 0),
             intArrayOf(0, 0, 0)
     )
 
+
     fun makeMove(position: Position): WinningLine? {
-        stateY[position.row][position.column] = currentPlayer
+        stateGame[position.row][position.column] = currentPlayer
 
         val winningLine = hasGameEnded()
 
-        // */
+        /*
         if (winningLine == null) {
             currentPlayer = 3 - currentPlayer
         } else {
@@ -53,14 +56,14 @@ object GameManager {
                 2 -> player2Points++
             }
         }
-        // */
+        */
         return winningLine
     }
 
 
 
     fun reset() {
-        stateY = arrayOf(
+        stateGame = arrayOf(
                 intArrayOf(0, 0, 0),
                 intArrayOf(0, 0, 0),
                 intArrayOf(0, 0, 0)
@@ -68,22 +71,22 @@ object GameManager {
         currentPlayer = 1
     }
 
-    private fun hasGameEnded(): WinningLine? {
-        if (stateY[0][0] == currentPlayer && stateY[0][1] == currentPlayer && stateY[0][2] == currentPlayer) {
+    fun hasGameEnded(): WinningLine? {
+        if (stateGame[0][0] == currentPlayer && stateGame[0][1] == currentPlayer && stateGame[0][2] == currentPlayer) {
             return WinningLine.ROW_0
-        } else if (stateY[1][0] == currentPlayer && stateY[1][1] == currentPlayer && stateY[1][2] == currentPlayer) {
+        } else if (stateGame[1][0] == currentPlayer && stateGame[1][1] == currentPlayer && stateGame[1][2] == currentPlayer) {
             return WinningLine.ROW_1
-        } else if (stateY[2][0] == currentPlayer && stateY[2][1] == currentPlayer && stateY[2][2] == currentPlayer) {
+        } else if (stateGame[2][0] == currentPlayer && stateGame[2][1] == currentPlayer && stateGame[2][2] == currentPlayer) {
             return WinningLine.ROW_2
-        } else if (stateY[0][0] == currentPlayer && stateY[1][0] == currentPlayer && stateY[2][0] == currentPlayer) {
+        } else if (stateGame[0][0] == currentPlayer && stateGame[1][0] == currentPlayer && stateGame[2][0] == currentPlayer) {
             return WinningLine.COLUMN_0
-        } else if (stateY[0][1] == currentPlayer && stateY[1][1] == currentPlayer && stateY[2][1] == currentPlayer) {
+        } else if (stateGame[0][1] == currentPlayer && stateGame[1][1] == currentPlayer && stateGame[2][1] == currentPlayer) {
             return WinningLine.COLUMN_1
-        } else if (stateY[0][2] == currentPlayer && stateY[1][2] == currentPlayer && stateY[2][2] == currentPlayer) {
+        } else if (stateGame[0][2] == currentPlayer && stateGame[1][2] == currentPlayer && stateGame[2][2] == currentPlayer) {
             return WinningLine.COLUMN_2
-        } else if (stateY[0][0] == currentPlayer && stateY[1][1] == currentPlayer && stateY[2][2] == currentPlayer) {
+        } else if (stateGame[0][0] == currentPlayer && stateGame[1][1] == currentPlayer && stateGame[2][2] == currentPlayer) {
             return WinningLine.DIAGONAL_LEFT
-        } else if (stateY[0][2] == currentPlayer && stateY[1][1] == currentPlayer && stateY[2][0] == currentPlayer) {
+        } else if (stateGame[0][2] == currentPlayer && stateGame[1][1] == currentPlayer && stateGame[2][0] == currentPlayer) {
             return WinningLine.DIAGONAL_RIGHT
         }
         return null
