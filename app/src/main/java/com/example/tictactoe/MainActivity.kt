@@ -11,11 +11,8 @@ import com.example.tictactoe.dialogs.JoinGameDialog
 
 class MainActivity : AppCompatActivity() , GameDialogListener {
 
-
     val TAG:String = "MainActivity"
-
     lateinit var binding:ActivityMainBinding
-    //lateinit var startNewGameButton: Button
 
     companion object {
         lateinit var mainContext : MainActivity
@@ -27,7 +24,6 @@ class MainActivity : AppCompatActivity() , GameDialogListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.startGameButton.setOnClickListener {
             createNewGame()
         }
@@ -37,16 +33,6 @@ class MainActivity : AppCompatActivity() , GameDialogListener {
         }
 
         mainContext = this
-
-        //GameManager.createGame("Testing createGame")
-
-        //Uth
-        /*startNewGameButton = findViewById(R.id.startNewGameButton)
-
-        startNewGameButton.setOnClickListener {
-            val intent = Intent(MainActivity@this, GameActivity::class.java)
-            startActivity(intent)
-        }*/
 
     }
 

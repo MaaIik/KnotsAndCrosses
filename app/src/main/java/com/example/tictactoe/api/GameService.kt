@@ -3,7 +3,6 @@ package com.example.tictactoe.api
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.tictactoe.App
@@ -36,7 +35,7 @@ object GameService {
     }
 
 
-    fun createGame(playerId:String, state:GameState, callback:GameServiceCallback) {
+    fun createGame(playerId:String, state: GameState, callback:GameServiceCallback) {
 
         val url = APIEndpoints.CREATE_GAME.url
 
@@ -127,7 +126,7 @@ object GameService {
         val url = "https://generic-game-service.herokuapp.com/Game/${gameId}/poll"
 
         val request = object : JsonObjectRequest(
-                Request.Method.POST, url, null,
+                Request.Method.GET, url, null,
                 Response.Listener{
                     val game = Gson().fromJson(it.toString(0), Game::class.java)
                     callback(game, null)
