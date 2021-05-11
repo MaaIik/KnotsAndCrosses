@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="GameId:"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         tools:ignore="MissingConstraints" />
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Player 1 Points:"
-        android:textSize="18dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/gameInfo"
         app:layout_constraintTop_toBottomOf="@+id/gameInfo"
         tools:ignore="MissingConstraints" />
@@ -44,22 +44,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Player 2 Points:"
-        android:textSize="18dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/player_one_score"
         app:layout_constraintTop_toBottomOf="@+id/player_one_score"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/won_lose"
+        android:id="@+id/win_lose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@id/two"
+        app:layout_constraintStart_toStartOf="@id/one"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="50dp"
-        app:layout_constraintTop_toBottomOf="@+id/player_two_score"
-        app:layout_constraintBottom_toTopOf="@+id/player_one_score"
-        app:layout_constraintVertical_bias="0"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="0dp"
+        tools:ignore="MissingConstraints"
+        android:layout_marginStart="60dp" />
 
     <View
         android:id="@+id/view4"

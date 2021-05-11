@@ -15,20 +15,17 @@ import org.json.JSONObject
 
 typealias GameServiceCallback = (state: Game?, errorCode:Int? ) -> Unit
 
-/*  NOTE:
-    Using object expression to make GameService a Singleton.
-    Why? Because there should only be one active GameService ever.
- */
 
 object GameService {
 
     /// NOTE: Do not want to have App.context all over the code. Also it is nice if we later want to support different contexts
     private val context = App.context
 
-    /// NOTE: God practice to use a que for performing requests.
+    /// NOTE: Good practice to use a queue for performing requests.
     private val requestQue: RequestQueue = Volley.newRequestQueue(context)
 
-    /// NOTE: One posible way of constructing a list of API url. You want to construct the urls so that you can support different environments (i.e. Debug, Test, Prod etc)
+    /// NOTE: One possible way of constructing a list of API url.
+    // You want to construct the urls so that you can support different environments (i.e. Debug, Test, Prod etc)
     private enum class APIEndpoints(val url:String) {
         CREATE_GAME("%1s%2s%3s".format(context.getString(R.string.protocol), context.getString(R.string.domain),context.getString(
             R.string.base_path)))
@@ -45,14 +42,14 @@ object GameService {
 
         val request = object : JsonObjectRequest(
             Request.Method.POST,url, requestData,
-            {
+            Response.Listener{
                 // Success game created.
                 val game = Gson().fromJson(it.toString(0), Game::class.java)
                 println("1111111111111111createGame ${game}")
-                callback(game,null)
-            }, {
+                callback(game,null) },
+            Response.ErrorListener{
                 callback(null, it.networkResponse.statusCode)
-            } ) {
+        }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"
@@ -75,12 +72,10 @@ object GameService {
                 Request.Method.POST, url, requestData,
                 Response.Listener{
                     val game = Gson().fromJson(it.toString(0), Game::class.java)
-                    callback(game, null)
-                    println("1111111111111111join $game")
-                },
+                    callback(game, null)},
+
                 Response.ErrorListener{
-                    println("111111111111Errorjoin")
-            callback(null, it.networkResponse.statusCode)
+                    callback(null, it.networkResponse.statusCode)
         }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
@@ -104,11 +99,10 @@ object GameService {
                 Request.Method.POST, url, requestData,
                 Response.Listener{
                     val game = Gson().fromJson(it.toString(0), Game::class.java)
-                    callback(game, null)
-                    println("$game")
-                },
+                    callback(game, null) },
+
                 Response.ErrorListener{
-            callback(null, it.networkResponse.statusCode)
+                    callback(null, it.networkResponse.statusCode)
         }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
@@ -130,11 +124,11 @@ object GameService {
                 Response.Listener{
                     val game = Gson().fromJson(it.toString(0), Game::class.java)
                     callback(game, null)
-                    println("$game")
-                },
+                    println("$game") },
+
                 Response.ErrorListener{
                     callback(null, it.networkResponse.statusCode)
-                }) {
+        }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Content-Type"] = "application/json"

@@ -4,10 +4,10 @@
     android:toDegrees="135">
 
     <shape android:shape="line">
-        <solid android:color="@color/red" />
+        <solid android:color="#9E0639" />
         <stroke
-            android:width="4dp"
-            android:color="@color/red" />
+            android:width="5dp"
+            android:color="#9E0639" />
     </shape>
 
 </rotate>

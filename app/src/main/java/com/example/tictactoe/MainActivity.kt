@@ -24,10 +24,12 @@ class MainActivity : AppCompatActivity() , GameDialogListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Start game button
         binding.startGameButton.setOnClickListener {
             createNewGame()
         }
 
+        // Join game button
         binding.joinGameButton.setOnClickListener {
             joinGame()
         }
@@ -39,14 +41,11 @@ class MainActivity : AppCompatActivity() , GameDialogListener {
     private fun createNewGame(){
         val dlg = CreateGameDialog()
         dlg.show(supportFragmentManager, "CreateGameDialogFragment")
-
-
     }
 
     private fun joinGame(){
         val dlg = JoinGameDialog()
         dlg.show(supportFragmentManager, "JoinGameDialogFragment")
-
     }
 
     override fun onDialogCreateGame(player: String){
