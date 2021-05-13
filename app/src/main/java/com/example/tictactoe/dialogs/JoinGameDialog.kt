@@ -12,10 +12,6 @@ import java.lang.ClassCastException
 
 class JoinGameDialog() : DialogFragment() {
 
-    // Trenger ikke denne fordi vi har allerede laget den i CreateGameDialog
-    //internal lateinit var listener:GameDialogListener
-
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
 
@@ -39,17 +35,13 @@ class JoinGameDialog() : DialogFragment() {
                 }
                 setView(binding.root)
             }
-
             builder.create()
-
-
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            //listener = context as GameDialogListener
         } catch (e: ClassCastException){
             throw ClassCastException(("$context must implement GameDialogListener"))
 

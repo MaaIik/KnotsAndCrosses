@@ -26,7 +26,6 @@ class CreateGameDialog() : DialogFragment() {
                 setTitle("Create game")
                 setPositiveButton("Create") { dialog, which ->
                     if(binding.username.text.toString() != ""){
-                        //listener.onDialogCreateGame(binding.username.text.toString())
                         GameManager.createGame(binding.username.text.toString())
                     }
                 }
@@ -35,10 +34,7 @@ class CreateGameDialog() : DialogFragment() {
                 }
                 setView(binding.root)
             }
-
             builder.create()
-
-
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 

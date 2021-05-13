@@ -148,7 +148,7 @@ class GameActivity : AppCompatActivity() {
         }
         return yourTurn
     }
-    
+
     private fun testWinning() {
         val game = GamePlayHolder.GamePlay?.state!!
         when (TagHolder.yourTag)
