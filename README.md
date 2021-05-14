@@ -19,6 +19,43 @@ Etter at de trykker på en rute, så blir ruten tildelt den spilleren sin symbol
 Slik fortsetter spillet, og når en av spillerne får tre på rad på krysses det en rød linje gjennom den raden. 
 Dersom spillet ender med uavgjort, så er det en knapp som starter et nytt spill som spillerne trykker på. 
 
+**Spilleren starter et spill på følgende møte**
+<p align="center">
+  <img src="images/Fronpage.png" width="220" />
+  <img src="images/CreateGameDialog.png" width="220"/> 
+  <img src="images/CreateDialogTypingName.png" width="220" />
+  <img src="images/GameOnly1Player.png" width="220" />
+</p>
+
+**Etter at en spiller har opprettet en spillinstanse så kan en annen spiller joine gamet.**
+<p align="center">
+  <img src="images/JoinGameDialog.png" width="270" />
+  <img src="images/JoinDialogTypingNameAndId.png" width="270"/> 
+  <img src="images/BothPlayersJoined.png" width="270" />
+</p>
+
+**Når begge spillerne er koblet til, så kan de spille mot hverandre, alt etter spillets regler.**
+<p align="center">
+  <img src="images/GameSeq1.png" width="300" />
+  <img src="images/GameSeq2.png" width="300"/> 
+  <img src="images/GameSeq3.png" width="300" />
+</p>
+
+**Når en spiller vinner, så får vinneren en "You Won" tekst, og taperen får "You Lost".**
+<p align="center">
+  <img src="images/GameSeqWin.png" width="330" />
+  <img src="images/GameSeqLose.png" width="330"/> 
+</p>
+
+**Spillet er nå over, men dersom de ønsker å spille på nytt så kan de trykke på "Start New Game" knappen og starte på nytt.**
+
+<p align="center">
+  <img src="images/GameSeqNewGame.png" width="300" />
+</p>
+  
+
+
+
 # Konklusjon
 Som en konklusjon på denne rapporten, så vil jeg konkludere med å si at dette prosjektet har vært
 en lærerik og utfordrende opplevelse. Spesielt nytt og litt utfordrende var oppkoblingen mot webtjenesten, men grunnet det så lærte
