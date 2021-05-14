@@ -21,10 +21,10 @@ Dersom spillet ender med uavgjort, så er det en knapp som starter et nytt spill
 
 **Spilleren starter et spill på følgende møte**
 <p align="center">
-  <img src="images/Fronpage.png" width="220" />
-  <img src="images/CreateGameDialog.png" width="220"/> 
-  <img src="images/CreateDialogTypingName.png" width="220" />
-  <img src="images/GameOnly1Player.png" width="220" />
+  <img src="images/Fronpage.png" width="200" />
+  <img src="images/CreateGameDialog.png" width="200"/> 
+  <img src="images/CreateDialogTypingName.png" width="200" />
+  <img src="images/GameOnly1Player.png" width="200" />
 </p>
 
 **Etter at en spiller har opprettet en spillinstanse så kan en annen spiller joine gamet.**
@@ -36,9 +36,9 @@ Dersom spillet ender med uavgjort, så er det en knapp som starter et nytt spill
 
 **Når begge spillerne er koblet til, så kan de spille mot hverandre, alt etter spillets regler.**
 <p align="center">
-  <img src="images/GameSeq1.png" width="300" />
-  <img src="images/GameSeq2.png" width="300"/> 
-  <img src="images/GameSeq3.png" width="300" />
+  <img src="images/GameSeq1.png" width="270" />
+  <img src="images/GameSeq2.png" width="270"/> 
+  <img src="images/GameSeq3.png" width="270" />
 </p>
 
 **Når en spiller vinner, så får vinneren en "You Won" tekst, og taperen får "You Lost".**
